@@ -1,0 +1,10 @@
+ballPNG
+catPNG
+pot1PNG
+bearPNG
+pot2PNG
+buddhaPNG
+gobletPNG
+readingPNG
+cowPNG
+harvestPNG
