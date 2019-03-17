@@ -1,0 +1,330 @@
+<script src="http://www.google.com/jsapi" type="text/javascript"></script> 
+<script type="text/javascript">google.load("jquery", "1.3.2");</script>
+
+<style type="text/css">
+body {
+    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
+    font-weight:300;
+    font-size:18px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 1000px;
+}	
+h1 {
+    font-weight:300;
+}
+
+.disclaimerbox {
+    background-color: #eee;		
+    border: 1px solid #eeeeee;
+    border-radius: 10px ;
+    -moz-border-radius: 10px ;
+    -webkit-border-radius: 10px ;
+    padding: 20px;
+}
+
+video.header-vid {
+    height: 140px;
+    border: 1px solid black;
+    border-radius: 10px ;
+    -moz-border-radius: 10px ;
+    -webkit-border-radius: 10px ;
+}
+
+img.header-img {
+    height: 140px;
+    border: 1px solid black;
+    border-radius: 10px ;
+    -moz-border-radius: 10px ;
+    -webkit-border-radius: 10px ;
+}
+
+img.rounded {
+    border: 0px solid #eeeeee;
+    border-radius: 10px ;
+    -moz-border-radius: 10px ;
+    -webkit-border-radius: 10px ;
+}
+
+a:link,a:visited
+{
+    color: #1367a7;
+    text-decoration: none;
+}
+a:hover {
+    color: #208799;
+  }
+
+  td.dl-link {
+      height: 160px;
+      text-align: center;
+      font-size: 22px;
+  }
+
+  .vert-cent {
+      position: relative;
+      top: 50%;
+      transform: translateY(-50%);
+  }
+
+  hr
+  {
+      border: 0;
+      height: 1px;
+      background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+  }
+</style>
+
+<html>
+<head>
+<title>Self-calibrating Deep Photometric Stereo Networks</title>
+<meta property="og:image" content="https://github.com/guanyingc/PS-FCN/blob/gh-pages/files/ECCV2018_PS-FCN.png"/> <!--TODO-->
+<meta property="og:title" content="Self-calibrating Deep Photometric Stereo Networks, In CVPR 2019." />
+</head>
+
+<body>
+<br>
+<center>
+    <span style="font-size:42px">Self-calibrating Deep Photometric Stereo Networks</span><br>
+    <table align=center width=900px>
+        <tr>
+            <td align=center width=900px>
+                <span style="font-size:22px"><a href="http://www.gychen.org">Guanying Chen<sup>1</sup></a></span> &emsp;
+                <span style="font-size:22px"><a href="http://www.hankai.org/">Kai Han<sup>2</sup></a></span> &emsp;
+                <span style="font-size:22px"><a href="http://alumni.media.mit.edu/~shiboxin/">Boxin Shi<sup>3,4</sup></a></span> &emsp;
+                <span style="font-size:22px"><a href="http://www-infobiz.ist.osaka-u.ac.jp/en/member/matsushita/">Yasuyuki Matsushita<sup>5</sup></a></span> &emsp;
+                <span style="font-size:22px"><a href="http://i.cs.hku.hk/~kykwong/">Kwan-Yee K. Wong<sup>1</sup></a></span>
+            </td>
+        </tr>
+    </table>
+    <table align=center width=800px>
+        <td align=center width=300px>
+            <span style="font-size:21px"><sup>1</sup>The University of Hong Kong &emsp; <sup>2</sup>University of Oxford</span> <br>
+            <span style="font-size:21px"><sup>3</sup>Peking University &emsp; <sup>4</sup>Peng Cheng Laboratory &emsp; <sup>5</sup>Osaka University</span>
+        </td>
+    </table>
+    <br>
+    <table align=center width=900px>
+        <tr>
+            <td align=center width=900px>
+                <center>
+                    <span style="font-size:22px"> Code [PyTorch] </span> &emsp; &emsp;
+                    <span style="font-size:22px">Paper [CVPR 2019 Oral] </span> &emsp; &emsp;
+                    <span style="font-size:22px">Supplementary [PDF] </span>  
+                    <!--<span style="font-size:22px">Poster [GitHub]</span>
+                    <span style="font-size:22px"><a href='https://github.com/guanyingc/PS-FCN'> Code [PyTorch] </a></span> &emsp; &emsp;
+                    <span style="font-size:22px"><a href='https://arxiv.org/pdf/1807.08696.pdf'> Paper [CVPR 2019 Oral] </a></span>
+                    <span style="font-size:22px"><a href='https://github.com/guanyingc/PS-FCN_Poster_LaTex/blob/master/poster_landscape.pdf'> Poster [GitHub]</a></span>
+                    -->
+                </center>
+            </td>
+        </tr>
+    </table>
+</center>
+<br>
+
+<table align=center width=1000px>
+    <tr>
+        <td align=center width=1000px>
+            <img class="round" style="height:250px" src = "./files/buddha.gif">
+            <img class="round" style="height:250px" src = "./files/GT.png">
+        </td>
+    </tr> 
+</table>
+<hr>
+
+<table align=center width=900px>
+    <center><h1>Abstract</h1></center>
+    <p>
+    This paper proposes an uncalibrated photometric stereo method for non-Lambertian scenes based on deep learning. Unlike previous approaches that heavily rely on assumptions of specific reflectances and light source distributions, our method is able to determine both shape and light directions of a scene with unknown arbitrary reflectances observed under unknown varying light directions. To achieve this goal, we propose a two-stage deep learning architecture, called SDPS-Net, which can effectively take advantage of intermediate supervision, resulting in reduced learning difficulty compared to a single-stage model. Experiments on both synthetic and real datasets show that our proposed approach significantly outperforms previous uncalibrated photometric stereo methods.
+    </p>
+</table>
+<hr>
+<!--
+<table align=center width=900px>
+    <center><h1>Video</h1></center>
+    <center><iframe width="800" height="450" src="https://www.youtube.com/embed/FFL1pZ7z9nI" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe></center>
+</table>
+<hr>
+-->
+
+<table align=center>
+    <center><h1>Method</h1></center>
+    <tr>
+        <td align=center width=1000px>
+            <img class="round" style="width:1000px" src="./files/LCNet_NENet.jpg"/></img>
+        </td>
+    </tr>
+    <tr>
+        <td>
+        <p><br>The network architecture of SDPS-Net is composed of (a) Lighting Calibration Network and (b) Normal Estimation Network. Kernel sizes for all convolutional layers are 3 × 3, and values above the layers indicate the number of feature channels.</p>
+        </td>
+    </tr>
+</table>
+<hr>
+
+<table align=center>
+    <center><h1>Training Dataset</h1></center>
+    <tr> <td align=center>
+            <img class="round" style="width:800px" src="./files/data.png"/>
+    </td> </tr>
+    <tr> <td>
+    <p><br>We adopted the publicly available <a href="https://github.com/guanyingc/PS-FCN">synthetic PS Blobby and Sculpture datasets</a> for training. Blobby and Sculpture datasets provide surfaces with complex normal distributions and diverse materials from MERL dataset. Effects of cast shadow and inter-reflection were considered during rendering using the physically based raytracer Mitsuba. There are 85,212 samples in total. Each sample was rendered under 64 distinct light directions sampled from the upper-hemisphere with uniform light intensity, resulting in 5,453,568 images (85,212 X 64). The rendered images have a dimension of 128 X 128.</p>
+    </td> </tr>
+</table>
+<hr>
+
+<table align=center width=1000px>
+    <center><h1>Results on Real Dataset</h1></center>
+    <center><h2>1. DiLiGenT Main Dataset.</h2></center>
+    <table align=center width=1000px>
+        <tr> <td align=center>
+                <img class="round" style="width:900px" src="./files/diligent_main_quant.png"/>
+        </td> </tr>
+        <tr><td align=center>
+                <br> <b>Up to Down: Sample Input, Object, GT Normal, Results of SDPS-Net, and Error Map</b> <br>
+                <img class="round" style="height:83px" src="./files/DiLiGenT/ball.gif"/>
+                <img class="round" style="height:83px" src="./files/DiLiGenT/cat.gif"/>
+                <img class="round" style="height:83px" src="./files/DiLiGenT/pot1.gif"/>
+                <img class="round" style="height:83px" src="./files/DiLiGenT/bear.gif"/>
+                <img class="round" style="height:83px" src="./files/DiLiGenT/pot2.gif"/>
+                <img class="round" style="height:83px" src="./files/DiLiGenT/buddha.gif"/>
+                <img class="round" style="height:83px" src="./files/DiLiGenT/goblet.gif"/>
+                <img class="round" style="height:83px" src="./files/DiLiGenT/reading.gif"/>
+                <img class="round" style="height:83px" src="./files/DiLiGenT/cow.gif"/>
+                <img class="round" style="height:83px" src="./files/DiLiGenT/harvest.gif"/>
+        </td></tr>
+        <tr><td align=center>
+                <img class="round" style="height:80px" src="./files/DiLiGenT/GT/4.0_ballPNG_001.png"/>
+                <img class="round" style="height:80px" src="./files/DiLiGenT/GT/4.0_catPNG_001.png"/>
+                <img class="round" style="height:80px" src="./files/DiLiGenT/GT/4.0_pot1PNG_001.png"/>
+                <img class="round" style="height:80px" src="./files/DiLiGenT/GT/4.0_bearPNG_001.png"/>
+                <img class="round" style="height:80px" src="./files/DiLiGenT/GT/4.0_pot2PNG_001.png"/>
+                <img class="round" style="height:80px" src="./files/DiLiGenT/GT/4.0_buddhaPNG_001.png"/>
+                <img class="round" style="height:80px" src="./files/DiLiGenT/GT/4.0_gobletPNG_001.png"/>
+                <img class="round" style="height:80px" src="./files/DiLiGenT/GT/4.0_readingPNG_001.png"/>
+                <img class="round" style="height:80px" src="./files/DiLiGenT/GT/4.0_cowPNG_001.png"/>
+                <img class="round" style="height:80px" src="./files/DiLiGenT/GT/4.0_harvestPNG_001.png"/>
+        </td></tr>
+        <tr><td align=center>
+                <img class="round" style="height:80px" src="./files/DiLiGenT/GT/ballPNGGT_normal.png"/>
+                <img class="round" style="height:80px" src="./files/DiLiGenT/GT/catPNGGT_normal.png"/>
+                <img class="round" style="height:80px" src="./files/DiLiGenT/GT/pot1PNGGT_normal.png"/>
+                <img class="round" style="height:80px" src="./files/DiLiGenT/GT/bearPNGGT_normal.png"/>
+                <img class="round" style="height:80px" src="./files/DiLiGenT/GT/pot2PNGGT_normal.png"/>
+                <img class="round" style="height:80px" src="./files/DiLiGenT/GT/buddhaPNGGT_normal.png"/>
+                <img class="round" style="height:80px" src="./files/DiLiGenT/GT/gobletPNGGT_normal.png"/>
+                <img class="round" style="height:80px" src="./files/DiLiGenT/GT/readingPNGGT_normal.png"/>
+                <img class="round" style="height:80px" src="./files/DiLiGenT/GT/cowPNGGT_normal.png"/>
+                <img class="round" style="height:80px" src="./files/DiLiGenT/GT/harvestPNGGT_normal.png"/>
+        </td></tr>
+        <tr><td align=center>
+                <img class="round" style="height:80px" src="./files/DiLiGenT/ballPNGDiLiGenT_normal.png"/>
+                <img class="round" style="height:80px" src="./files/DiLiGenT/catPNGDiLiGenT_normal.png"/>
+                <img class="round" style="height:80px" src="./files/DiLiGenT/pot1PNGDiLiGenT_normal.png"/>
+                <img class="round" style="height:80px" src="./files/DiLiGenT/bearPNGDiLiGenT_normal.png"/>
+                <img class="round" style="height:80px" src="./files/DiLiGenT/pot2PNGDiLiGenT_normal.png"/>
+                <img class="round" style="height:80px" src="./files/DiLiGenT/buddhaPNGDiLiGenT_normal.png"/>
+                <img class="round" style="height:80px" src="./files/DiLiGenT/gobletPNGDiLiGenT_normal.png"/>
+                <img class="round" style="height:80px" src="./files/DiLiGenT/readingPNGDiLiGenT_normal.png"/>
+                <img class="round" style="height:80px" src="./files/DiLiGenT/cowPNGDiLiGenT_normal.png"/>
+                <img class="round" style="height:80px" src="./files/DiLiGenT/harvestPNGDiLiGenT_normal.png"/>
+        </td></tr>
+        <tr><td align=center>
+                <img class="round" style="height:80px" src="./files/DiLiGenT/ballPNGDiLiGenT_diff.png"/>
+                <img class="round" style="height:80px" src="./files/DiLiGenT/catPNGDiLiGenT_diff.png"/>
+                <img class="round" style="height:80px" src="./files/DiLiGenT/pot1PNGDiLiGenT_diff.png"/>
+                <img class="round" style="height:80px" src="./files/DiLiGenT/bearPNGDiLiGenT_diff.png"/>
+                <img class="round" style="height:80px" src="./files/DiLiGenT/pot2PNGDiLiGenT_diff.png"/>
+                <img class="round" style="height:80px" src="./files/DiLiGenT/buddhaPNGDiLiGenT_diff.png"/>
+                <img class="round" style="height:80px" src="./files/DiLiGenT/gobletPNGDiLiGenT_diff.png"/>
+                <img class="round" style="height:80px" src="./files/DiLiGenT/readingPNGDiLiGenT_diff.png"/>
+                <img class="round" style="height:80px" src="./files/DiLiGenT/cowPNGDiLiGenT_diff.png"/>
+                <img class="round" style="height:80px" src="./files/DiLiGenT/harvestPNGDiLiGenT_diff.png"/>
+        </td></tr>
+    </table>
+
+    <table align=center>
+        <center><h2>2. Light Stage Data Gallery.</h2></center>
+        <tr><td align=center>
+                <b>Up to Down: Sample Input, Object, Results of SDPS-Net and UPS-FCN</b> <br>
+                <img class="round" style="height:180px" src="./files/LightStage/helmet_side.gif"/>
+                <img class="round" style="height:180px" src="./files/LightStage/plant.gif"/>
+                <img class="round" style="height:180px" src="./files/LightStage/fighting.gif"/>
+                <img class="round" style="height:180px" src="./files/LightStage/kneeling.gif"/>
+                <img class="round" style="height:180px" src="./files/LightStage/standing.gif"/>
+                <img class="round" style="height:180px" src="./files/LightStage/helmet_front.gif"/>
+        </td></tr>
+        <tr><td align=center>
+             <img class="round" style="height:180px" src="./files/LightStage/Object/4.0_helmet_side_left_helmet_side_left_0192.jpg"/>
+             <img class="round" style="height:180px" src="./files/LightStage/Object/2.0_plant_left_plant_left_0021.jpg"/>
+             <img class="round" style="height:180px" src="./files/LightStage/Object/4.0_knight_fighting_knight_fighting_057.jpg"/>
+             <img class="round" style="height:180px" src="./files/LightStage/Object/4.0_knight_kneeling_knight_kneeling_048.jpg"/>
+             <img class="round" style="height:180px" src="./files/LightStage/Object/4.0_knight_standing_knight_standing_116.jpg"/>
+             <img class="round" style="height:180px" src="./files/LightStage/Object/4.0_helmet_front_left_helmet_front_left_0082.jpg"/>
+        </td></tr>
+        <tr><td align=center>
+             <img class="round" style="height:180px" src="./files/LightStage/helmet_side_left_Normal_DiLiGenT.jpg"/>
+             <img class="round" style="height:180px" src="./files/LightStage/plant_left_Normal_DiLiGenT.jpg"/>
+             <img class="round" style="height:180px" src="./files/LightStage/knight_fighting_Normal_DiLiGenT.jpg"/>
+             <img class="round" style="height:180px" src="./files/LightStage/knight_kneeling_Normal_DiLiGenT.jpg"/>
+             <img class="round" style="height:180px" src="./files/LightStage/knight_standing_Normal_DiLiGenT.jpg"/>
+             <img class="round" style="height:180px" src="./files/LightStage/helmet_front_left_Normal_DiLiGenT.jpg"/>
+        </td></tr>
+        <tr><td align=center>
+             <img class="round" style="height:180px" src="./files/LightStage/UPS-FCN/helmet_side_left_Normal_DiLiGenT.jpg"/>
+             <img class="round" style="height:180px" src="./files/LightStage/UPS-FCN/plant_left_Normal_DiLiGenT.jpg"/>
+             <img class="round" style="height:180px" src="./files/LightStage/UPS-FCN/knight_fighting_Normal_DiLiGenT.jpg"/>
+             <img class="round" style="height:180px" src="./files/LightStage/UPS-FCN/knight_kneeling_Normal_DiLiGenT.jpg"/>
+             <img class="round" style="height:180px" src="./files/LightStage/UPS-FCN/knight_standing_Normal_DiLiGenT.jpg"/>
+             <img class="round" style="height:180px" src="./files/LightStage/UPS-FCN/helmet_front_left_Normal_DiLiGenT.jpg"/>
+        </td></tr>
+    </table>
+    <table align=center>
+        <center><h2>3. Gourd&Apple Dataset.</h2></center> <!--(Sample Input and Results of SDPS-Net)-->
+        <tr><td align=center>
+                <img class="round" style="height:150px" src="./files/Gourd/apple.gif"/>
+                <img class="round" style="height:150px" src="./files/Gourd/apple_Normal_DiLiGenT.png"/>
+                <img class="round" style="height:150px" src="./files/Gourd/gourd1.gif"/>
+                <img class="round" style="height:150px" src="./files/Gourd/gourd1_Normal_DiLiGenT.png"/>
+                <img class="round" style="height:150px" src="./files/Gourd/gourd2.gif"/>
+                <img class="round" style="height:150px" src="./files/Gourd/gourd2_Normal_DiLiGenT.png"/>
+        </td></tr>
+        <!--
+        <tr><td align=center>
+                <img class="round" style="height:180px" src="./files/Gourd/2.0_apple_I_0003.jpg"/>
+                <img class="round" style="height:180px" src="./files/Gourd/2.0_gourd1_I_0003.jpg"/>
+                <img class="round" style="height:180px" src="./files/Gourd/2.0_gourd2_I_0003.jpg"/>
+        </td></tr>
+        <tr><td align=center>
+                 <img class="round" style="height:180px" src="./files/Gourd/apple_Normal_DiLiGenT.png"/>
+                <img class="round" style="height:180px" src="./files/Gourd/gourd1_Normal_DiLiGenT.png"/>
+                <img class="round" style="height:180px" src="./files/Gourd/gourd2_Normal_DiLiGenT.png"/>
+        </td></tr>
+        -->
+    </table>
+</table>
+
+<br>
+<hr>
+<center>
+    <center><h1>Code and Model</h1></center>
+    <h3>Code, models and datasets are available at <a href="https://github.com/guanyingc/SDPS-Net">Github!</a></h2>
+    <!--<h3>Our code and trained model will be made publicly available before June 2019! !</h3>-->
+</center>
+<hr>
+
+<table align=center width=1000px>
+    <tr>
+        <td width=400px>
+            <left>
+            <center><h1>Acknowledgments</h1></center>
+We thank the anonymous reviewers for their constructive comments. We gratefully acknowledge the support of NVIDIA Corporation with the donation of the Titan X Pascal GPU used for this research. Kai Han is supported by EPSRC Programme Grant Seebibyte EP/M013774/1. Boxin Shi is supported in part by National Science Foundation of China under Grant No. 61872012. 
+            </left>
+        </td>
+    </tr>
+</table>
+<br><br>
+
+</body>
+</html>
