@@ -37,7 +37,7 @@ conda install -c anaconda scipy
 conda install -c anaconda scikit-image 
 
 # Download this code
-git clone git@github.com:guanyingc/SDPS-Net.git
+git clone https://github.com/guanyingc/SDPS-Net.git
 cd SDPS-Net
 ```
 ## Overview:
@@ -97,7 +97,7 @@ CUDA_VISIBLE_DEVICES=0 python main_stage2.py --in_img_num 32 --retrain data/logd
 ## FAQ
 
 #### Q1: How to test SDPS-Net on other dataset?
-- You have to implement a customized Dataset class to load your data, which should not be difficult. Please refer to `datasets/DiLiGenT_data.py` for an example that loads the DiLiGenT main dataset. Precomputed results on DiLiGenT main/test dataset, Gourd\&Apple dataset, Light Stage Dataset and Synthetic Test dataset are available upon request.
+- You have to implement a customized Dataset class to load your data, which should not be difficult. Please refer to `datasets/UPS_DiLiGenT_main.py` for an example that loads the DiLiGenT main dataset. Precomputed results on DiLiGenT main dataset, Gourd\&Apple dataset, Light Stage Dataset and Synthetic Test dataset are available upon request.
 
 #### Q2: What should I do if I have problem in running your code?
 - Please create an issue if you encounter errors when trying to run the code. Please also feel free to submit a bug report.
