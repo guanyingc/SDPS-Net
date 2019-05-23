@@ -9,18 +9,19 @@ def getInput(args, data):
     return input_list
 
 def parseData(args, sample, timer=None, split='train'):
+    img, normal, mask = sample['img'], sample['normal'], sample['mask']
+    ints = sample['ints']
     if args.in_light:
-        dirs = sample['dirs'].expand_as(sample['img'])
+        dirs = sample['dirs'].expand_as(img)
     else: # predict lighting, prepare ground truth
         n, c, h, w = sample['dirs'].shape
         dirs_split = torch.split(sample['dirs'].view(n, c), 3, 1)
         dirs = torch.cat(dirs_split, 0)
     if timer: timer.updateTime('ToCPU')
     if args.cuda:
-        img = sample['img'].cuda(); 
-        normal, mask = sample['normal'].cuda(), sample['mask'].cuda(); 
-        dirs, ints = dirs.cuda(), sample['ints'].cuda()
-    if timer: timer.updateTime('ToGPU')
+        img, normal, mask = img.cuda(), normal.cuda(), mask.cuda()
+        dirs, ints = dirs.cuda(), ints.cuda()
+        if timer: timer.updateTime('ToGPU')
     data = {'img': img, 'n': normal, 'm': mask, 'dirs': dirs, 'ints': ints}
     return data 
 
