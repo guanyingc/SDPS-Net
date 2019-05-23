@@ -17,7 +17,7 @@ SDPS-Net is implemented in [PyTorch](https://pytorch.org/) and tested with Ubunt
 - Python 2.7 
 - PyTorch (version = 0.40)
 - torchvision
-- CUDA-8.0/9.0  
+- CUDA-8.0/9.0 # Skip this if you only have CPUs in your computer
 - numpy
 - scipy
 - scikit-image 
@@ -63,6 +63,9 @@ sh scripts/prepare_diligent_dataset.sh
 
 # Test SDPS-Net on DiLiGenT main dataset using all of the 96 image
 CUDA_VISIBLE_DEVICES=0 python eval/run_stage2.py --retrain data/models/LCNet_CVPR2019.pth.tar --retrain_s2 data/models/NENet_CVPR2019.pth.tar
+
+# If you only have CPUs, please add the argument "--cuda" to disable the usage of GPU
+python eval/run_stage2.py --cuda --retrain data/models/LCNet_CVPR2019.pth.tar --retrain_s2 data/models/NENet_CVPR2019.pth.tar
 ```
 
 ## Training
@@ -101,6 +104,9 @@ CUDA_VISIBLE_DEVICES=0 python main_stage2.py --in_img_num 32 --retrain data/logd
 
 #### Q2: What should I do if I have problem in running your code?
 - Please create an issue if you encounter errors when trying to run the code. Please also feel free to submit a bug report.
+
+#### Q3: Could I run your code only using CPUs?
+- The good news is that you can simply append `--cuda` in your command to disable the usage of GPU. The running time for the testing on DiLiGenT benchmark using CPUs is still bearable (should be less than 20 minutes). However, it is EXTREMELY SLOW for training! 
 
 ## Citation
 If you find this code or the provided models useful in your research, please consider cite: 
