@@ -14,6 +14,11 @@ class RunModelOpts(BaseOpts):
         self.parser.add_argument('--test_batch', default=1,   type=int)
         self.parser.add_argument('--test_disp',  default=1,   type=int)
         self.parser.add_argument('--test_save',  default=1,   type=int)
+        
+        ### For UPS_Custom_Datast.py to test you own dataset
+        self.parser.add_argument('--have_l_dirs', default=False, action='store_true', help='Have light directions?')
+        self.parser.add_argument('--have_l_ints', default=False, action='store_true', help='Have light intensities?')
+        self.parser.add_argument('--have_gt_n',   default=False, action='store_true', help='Have GT surface normals?')
 
     def collectInfo(self):
         self.args.str_keys  = ['model', 'model_s2', 'benchmark', 'fuse_type']
