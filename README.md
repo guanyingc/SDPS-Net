@@ -49,12 +49,12 @@ We provide:
 - Full code to train a new model, including codes for debugging, visualization and logging.
 
 ## Testing
-#### Download the trained models
+### Download the trained models
 ```
 sh scripts/download_pretrained_models.sh
 ```
 
-#### Test on the DiLiGenT main dataset
+### Test SDPS-Net on the DiLiGenT main dataset
 ```shell
 # Prepare the DiLiGenT main dataset
 sh scripts/prepare_diligent_dataset.sh
@@ -63,22 +63,37 @@ sh scripts/prepare_diligent_dataset.sh
 
 # Test SDPS-Net on DiLiGenT main dataset using all of the 96 image
 CUDA_VISIBLE_DEVICES=0 python eval/run_stage2.py --retrain data/models/LCNet_CVPR2019.pth.tar --retrain_s2 data/models/NENet_CVPR2019.pth.tar
+# Please check the outputs in data/models/
 
 # If you only have CPUs, please add the argument "--cuda" to disable the usage of GPU
 python eval/run_stage2.py --cuda --retrain data/models/LCNet_CVPR2019.pth.tar --retrain_s2 data/models/NENet_CVPR2019.pth.tar
 ```
 
+### Test SDPS-Net on your own dataset
+You have two options to test our method on your dataset. In the first option, you have to implement a customized Dataset class to load your data, which should not be difficult. Please refer to `datasets/UPS_DiLiGenT_main.py` for an example that loads the DiLiGenT main dataset.
+
+If you don't want to implement your own Dataset class, you may try our `datasets/UPS_Custom_Dataset.py`. However, you have to first arrange your dataset in the same format as the `data/ToyPSDataset/`. Then you can call the following commands
+```shell
+CUDA_VISIBLE_DEVICES=0 python eval/run_stage2.py --retrain data/models/LCNet_CVPR2019.pth.tar --retrain_s2 data/models/NENet_CVPR2019.pth.tar --benchmark UPS_Custom_Dataset --bm_dir /path/to/your/dataset
+
+# To test SDPS-Net on the ToyPSDataset, simply run
+CUDA_VISIBLE_DEVICES=0 python eval/run_stage2.py --retrain data/models/LCNet_CVPR2019.pth.tar --retrain_s2 data/models/NENet_CVPR2019.pth.tar --benchmark UPS_Custom_Dataset --bm_dir data/ToyPSDataset/
+# Please check the outputs in data/models/
+```
+You may find input arguments in `run_model_opts.py` (particularly `--have_l_dirs`, `--have_l_ints`, and `--have_gt_n`) useful during testing your own dataset.
+
 ## Training
 We adopted the publicly available synthetic [PS Blobby and Sculpture datasets](https://github.com/guanyingc/PS-FCN) for training.
 To train a new SDPS-Net model, you have to follow the following steps:
-#### Download the training data
+
+### Download the training data
 ```shell
 # The total size of the zipped synthetic datasets is 4.7+19=23.7 GB 
 # and it takes some times to download and unzip the datasets.
 sh scripts/download_synthetic_datasets.sh
 ```
 
-#### First stage: run `main_stage1.py` to train Light Calibration Network (LCNet)
+### First stage: run `main_stage1.py` to train Light Calibration Network (LCNet)
 ```shell
 # Train LCNet on synthetic datasets using 32 input images
 CUDA_VISIBLE_DEVICES=0 python main_stage1.py --in_img_num 32
@@ -87,7 +102,7 @@ CUDA_VISIBLE_DEVICES=0 python main_stage1.py --in_img_num 32
 # You can find checkpoints and results in data/logdir/
 # It takes about 20 hours to train LCNet on a single Titan X Pascal GPU.
 ```
-#### Second stage: run `main_stage2.py` to train Normal Estimation Network (NENet)
+### Second stage: run `main_stage2.py` to train Normal Estimation Network (NENet)
 ```shell
 # Train NENet on synthetic datasets using 32 input images
 CUDA_VISIBLE_DEVICES=0 python main_stage2.py --in_img_num 32 --retrain data/logdir/path/to/checkpointDirOfLCNet/checkpoint20.pth.tar
@@ -100,7 +115,7 @@ CUDA_VISIBLE_DEVICES=0 python main_stage2.py --in_img_num 32 --retrain data/logd
 ## FAQ
 
 #### Q1: How to test SDPS-Net on other dataset?
-- You have to implement a customized Dataset class to load your data, which should not be difficult. Please refer to `datasets/UPS_DiLiGenT_main.py` for an example that loads the DiLiGenT main dataset. Precomputed results on DiLiGenT main dataset, Gourd\&Apple dataset, Light Stage Dataset and Synthetic Test dataset are available upon request.
+- You can implement a customized Dataset class to load your data. You may also use the provided `datasets/UPS_Custom_Dataset.py` Dataset class to load your data. However, you have to first arrange your dataset in the same format as the `data/ToyPSDataset/`. Precomputed results on DiLiGenT main dataset, Gourd\&Apple dataset, Light Stage Dataset and Synthetic Test dataset are available upon request.
 
 #### Q2: What should I do if I have problem in running your code?
 - Please create an issue if you encounter errors when trying to run the code. Please also feel free to submit a bug report.

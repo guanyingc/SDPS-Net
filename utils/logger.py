@@ -137,7 +137,7 @@ class Logger(object):
     def saveSplit(self, res, save_prefix):
         n, c, h, w = res.shape
         for i in range(n):
-            vutils.save_image(res[i], save_prefix + '_%d.jpg' % (i))
+            vutils.save_image(res[i], save_prefix + '_%d.png' % (i))
 
     def saveImgResults(self, results, split, epoch, iters, nrow, error=''):
         max_save_n = self.args.test_save_n if split == 'test' else self.args.train_save_n
@@ -150,16 +150,16 @@ class Logger(object):
         if self.args.save_split: 
             self.saveSplit(res, save_prefix)
         else:
-            vutils.save_image(res, save_prefix + '_out.jpg', nrow=nrow)
+            vutils.save_image(res, save_prefix + '_out.png', nrow=nrow)
 
     def plotCurves(self, recorder, split='train', epoch=-1, intv=1):
         dict_of_array = recorder.recordToDictOfArray(split, epoch, intv)
         save_dir = os.path.join(self.args.log_dir, split)
         if epoch < 0:
             save_dir = self.args.log_dir
-            save_name = '%s_Summary.jpg' % (split)
+            save_name = '%s_Summary.png' % (split)
         else:
-            save_name = '%s_epoch_%d.jpg' % (split, epoch)
+            save_name = '%s_epoch_%d.png' % (split, epoch)
 
         classes = ['loss', 'acc', 'err', 'lr', 'ratio']
         classes = utils.checkIfInList(classes, dict_of_array.keys())
