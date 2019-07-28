@@ -1,7 +1,7 @@
 import torch
 import torch.nn as nn
 from torch.nn.init import kaiming_normal_
-import model_utils
+from . import model_utils
 
 class FeatExtractor(nn.Module):
     def __init__(self, batchNorm=False, c_in=3, other={}):

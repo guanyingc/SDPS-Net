@@ -1,13 +1,14 @@
 from __future__ import division
 import os
 import numpy as np
-from scipy.ndimage import imread
+#from scipy.ndimage import imread
+from imageio import imread
 
 import torch
 import torch.utils.data as data
 
 from datasets import pms_transforms
-import util
+from . import util
 np.random.seed(0)
 
 class UPS_Synth_Dataset(data.Dataset):
@@ -23,7 +24,7 @@ class UPS_Synth_Dataset(data.Dataset):
         img_dir     = os.path.join(self.root, 'Images', self.shape_list[index])
         img_list    = util.readList(os.path.join(img_dir, '%s_%s.txt' % (shape, mtrl)))
 
-        data = np.genfromtxt(img_list, dtype='string', delimiter=' ')
+        data = np.genfromtxt(img_list, dtype='str', delimiter=' ')
         select_idx = np.random.permutation(data.shape[0])[:self.args.in_img_num]
         idxs = ['%03d' % (idx) for idx in select_idx]
         data = data[select_idx, :]

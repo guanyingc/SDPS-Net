@@ -1,9 +1,9 @@
 import datetime, time, os
-import utils
 import numpy as np
 import torch
 import torchvision.utils as vutils
 import scipy.io as sio
+from . import utils
 
 import matplotlib; matplotlib.use('agg')
 import matplotlib.pyplot as plt
@@ -51,7 +51,7 @@ class Logger(object):
 
         self._checkPath(args, dir_name)
         file_dir = os.path.join(args.log_dir, '%s,%s' % (dir_name, date_now.strftime('%H:%M:%S')))
-        self.log_fie = open(file_dir, 'w', 0)
+        self.log_fie = open(file_dir, 'w')
         return 
 
     def _checkPath(self, args, dir_name):
@@ -77,6 +77,7 @@ class Logger(object):
         print('%s' % strs)
         if self.args.make_dir:
             self.log_fie.write('%s\n' % strs)
+            self.log_fie.flush()
 
     def getTimeInfo(self, epoch, iters, batch):
         time_elapsed = (time.time() - self.times['init']) / 3600.0

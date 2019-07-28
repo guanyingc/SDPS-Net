@@ -16,17 +16,17 @@ def calDirsAcc(gt_l, pred_l, data_batch=1):
     
     angular_err = torch.acos(dot_product) * 180.0 / math.pi
     l_err_mean  = angular_err.mean()
-    return {'l_err_mean': l_err_mean}, angular_err.squeeze()
+    return {'l_err_mean': l_err_mean.item()}, angular_err.squeeze()
 
 def calIntsAcc(gt_i, pred_i, data_batch=1):
     n, c, h, w = gt_i.shape
     pred_i  = pred_i.view(n, c, h, w)
-    ref_int = gt_i[:, :3].repeat(1, gt_i.shape[1] / 3, 1, 1)
+    ref_int = gt_i[:, :3].repeat(1, gt_i.shape[1] // 3, 1, 1)
     gt_i  = gt_i / ref_int
     scale = torch.gels(gt_i.view(-1, 1), pred_i.view(-1, 1))
     ints_ratio = (gt_i - scale[0][0] * pred_i).abs() / (gt_i + 1e-8)
     ints_error = torch.stack(ints_ratio.split(3, 1), 1).mean(2)
-    return {'ints_ratio': ints_ratio.mean()}, ints_error.squeeze()
+    return {'ints_ratio': ints_ratio.mean().item()}, ints_error.squeeze()
     
 def calNormalAcc(gt_n, pred_n, mask=None):
     """Tensor Dim: NxCxHxW"""
@@ -44,8 +44,8 @@ def calNormalAcc(gt_n, pred_n, mask=None):
     n_acc_45   = (ang_valid < 45).sum().float() / valid
 
     angular_map = colorMap(angular_map.cpu().squeeze(1))
-    value = {'n_err_mean': n_err_mean, 
-            'n_acc_11': n_acc_11, 'n_acc_30': n_acc_30, 'n_acc_45': n_acc_45}
+    value = {'n_err_mean': n_err_mean.item(), 
+            'n_acc_11': n_acc_11.item(), 'n_acc_30': n_acc_30.item(), 'n_acc_45': n_acc_45.item()}
     angular_error_map = {'angular_map': angular_map}
     return value, angular_error_map
 

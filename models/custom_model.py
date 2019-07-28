@@ -1,4 +1,4 @@
-import model_utils
+from . import model_utils
 import torch
 
 def buildModel(args):

@@ -1,7 +1,7 @@
 import torch
 import torch.nn as nn
 from torch.nn.init import kaiming_normal_
-import model_utils
+from . import model_utils
 from utils import eval_utils
 
 # Classification

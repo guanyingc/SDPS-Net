@@ -89,7 +89,7 @@ class Stage2Crit(object): # Second stage
 
         if self.s2_est_d:
             d_est, d_tar = output['dirs'], target['dirs']
-            d_num = d_tar.nelement() / d_tar.shape[1]
+            d_num = d_tar.nelement() // d_tar.shape[1]
             if not hasattr(self, 'l_flag') or d_num != self.l_flag.nelement():
                 self.l_flag = d_tar.data.new().resize_(d_num).fill_(1)
             dirs_loss = self.dirs_crit(d_est.squeeze(), d_tar, self.l_flag)
@@ -104,7 +104,7 @@ class Stage2Crit(object): # Second stage
 
         if self.s2_est_n:
             n_est, n_tar = output['n'], target['n']
-            n_num = n_tar.nelement() / n_tar.shape[1]
+            n_num = n_tar.nelement() // n_tar.shape[1]
             if not hasattr(self, 'n_flag') or n_num != self.n_flag.nelement():
                 self.n_flag = n_tar.data.new().resize_(n_num).fill_(1)
             self.out_reshape = n_est.permute(0, 2, 3, 1).contiguous().view(-1, 3)

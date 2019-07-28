@@ -55,8 +55,7 @@ def loadCheckpoint(path, model, cuda=True):
 
 def saveCheckpoint(save_path, epoch=-1, model=None, optimizer=None, records=None, args=None):
     state   = {'state_dict': model.state_dict(), 'model': args.model}
-    records = {'epoch': epoch, 'optimizer':optimizer.state_dict(), 'records': records, 
-            'args': args}
+    records = {'epoch': epoch, 'optimizer':optimizer.state_dict(), 'records': records} # 'args': args}
     torch.save(state,   os.path.join(save_path, 'checkp_{}.pth.tar'.format(epoch)))
     torch.save(records, os.path.join(save_path, 'checkp_{}_rec.pth.tar'.format(epoch)))
 
