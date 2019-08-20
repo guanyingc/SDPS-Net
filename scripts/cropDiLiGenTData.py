@@ -1,6 +1,6 @@
 import os, argparse, sys, shutil, glob
 import numpy as np
-from scipy.misc import imread, imsave
+from imageio import imread, imsave
 import scipy.io as sio
 
 root_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), '../')
