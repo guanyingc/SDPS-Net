@@ -95,7 +95,7 @@ To train a new SDPS-Net model, please follow the following steps:
 sh scripts/download_synthetic_datasets.sh
 ```
 
-### First stage: train Light Calibration Network (LCNet)
+### First stage: train Lighting Calibration Network (LCNet)
 ```shell
 # Train LCNet on synthetic datasets using 32 input images
 CUDA_VISIBLE_DEVICES=0 python main_stage1.py --in_img_num 32
