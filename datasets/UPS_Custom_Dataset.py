@@ -2,13 +2,13 @@ from __future__ import division
 import os
 import numpy as np
 import scipy.io as sio
-from scipy.ndimage import imread
+from imageio import imread
 
 import torch
 import torch.utils.data as data
 
 from datasets import pms_transforms
-import util
+from . import util
 np.random.seed(0)
 
 class UPS_Custom_Dataset(data.Dataset):
