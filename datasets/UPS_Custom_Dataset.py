@@ -33,12 +33,13 @@ class UPS_Custom_Dataset(data.Dataset):
         if self.args.have_l_dirs:
             dirs = np.genfromtxt(os.path.join(self.root, obj, 'light_directions.txt'))
         else:
-            dirs = np.zeros((len(names), 3))
+            dirs = np.zeros((len(names), 3)) 
+            dirs[:,2] = 1
         
         if self.args.have_l_ints:
             ints = np.genfromtxt(os.path.join(self.root, obj, 'light_intensities.txt'))
         else:
-            ints = np.zeros((len(names), 3))
+            ints = np.ones((len(names), 3))
 
         imgs = []
         for idx, img_name in enumerate(img_list):
