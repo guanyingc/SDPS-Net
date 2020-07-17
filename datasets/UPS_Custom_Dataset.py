@@ -2,13 +2,13 @@ from __future__ import division
 import os
 import numpy as np
 import scipy.io as sio
-from scipy.ndimage import imread
+from imageio import imread
 
 import torch
 import torch.utils.data as data
 
 from datasets import pms_transforms
-import util
+from . import util
 np.random.seed(0)
 
 class UPS_Custom_Dataset(data.Dataset):
@@ -34,11 +34,12 @@ class UPS_Custom_Dataset(data.Dataset):
             dirs = np.genfromtxt(os.path.join(self.root, obj, 'light_directions.txt'))
         else:
             dirs = np.zeros((len(names), 3))
+            dirs[:,2] = 1
         
         if self.args.have_l_ints:
             ints = np.genfromtxt(os.path.join(self.root, obj, 'light_intensities.txt'))
         else:
-            ints = np.zeros((len(names), 3))
+            ints = np.ones((len(names), 3))
 
         imgs = []
         for idx, img_name in enumerate(img_list):
