@@ -55,7 +55,7 @@ We provide:
 ```
 sh scripts/download_pretrained_models.sh
 ```
-If the above command is not working, please manually download the trained models from Google Drive ([LCNet and NENet](https://drive.google.com/drive/folders/1HCW9YDfsFoPxda3GDTjj3L5yuQUXw8a3?usp=sharing)) and put them in `./data/models/`.
+If the above command is not working, please manually download the trained models from One Drive ([LCNet and NENet](https://connecthkuhk-my.sharepoint.com/:f:/g/personal/u3004356_connect_hku_hk/ErCV-lrYvslGkcK_844HzHQBmiB1v_A2CdTuWRvxxtbhYQ?e=NCKYVs)) and put them in `./data/models/`.
 
 ### Test SDPS-Net on the DiLiGenT main dataset
 ```shell
@@ -95,7 +95,7 @@ To train a new SDPS-Net model, please follow the following steps:
 # and it takes some times to download and unzip the datasets.
 sh scripts/download_synthetic_datasets.sh
 ```
-If the above command is not working, please manually download the training datasets from Google Drive ([PS Sculpture Dataset](https://drive.google.com/file/d/1wGY1lAQKztTJ2_VqugjFopSAuIe5TESZ/view?usp=sharing), [PS Blobby Dataset](https://drive.google.com/file/d/1thl39nJZogDDUK-R3B-W702zJ8aK711o/view?usp=sharing)) and put them in `./data/datasets/`. 
+If the above command is not working, please manually download the training datasets from One Drive ([PS Sculpture Dataset and PS Blobby Dataset](https://connecthkuhk-my.sharepoint.com/:f:/g/personal/u3004356_connect_hku_hk/Ehke8nHlpUdJmyVSw2ANUEEBnQf-aCaSxaNcTr2g274-PQ?e=feT9E2) and put them in `./data/datasets/`.
 
 ### First stage: train Lighting Calibration Network (LCNet)
 ```shell
