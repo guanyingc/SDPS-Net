@@ -55,7 +55,7 @@ We provide:
 ```
 sh scripts/download_pretrained_models.sh
 ```
-If the above command is not working, please manually download the trained models from One Drive ([LCNet and NENet](https://connecthkuhk-my.sharepoint.com/:f:/g/personal/u3004356_connect_hku_hk/ErCV-lrYvslGkcK_844HzHQBmiB1v_A2CdTuWRvxxtbhYQ?e=NCKYVs)) and put them in `./data/models/`.
+If the above command is not working, please manually download the trained models from BaiduYun ([LCNet and NENet](https://pan.baidu.com/s/10huOyPkfDSkDUK23_j4y1w?pwd=i5ha)) and put them in `./data/models/`.
 
 ### Test SDPS-Net on the DiLiGenT main dataset
 ```shell
@@ -95,7 +95,7 @@ To train a new SDPS-Net model, please follow the following steps:
 # and it takes some times to download and unzip the datasets.
 sh scripts/download_synthetic_datasets.sh
 ```
-If the above command is not working, please manually download the training datasets from One Drive ([PS Sculpture Dataset and PS Blobby Dataset](https://connecthkuhk-my.sharepoint.com/:f:/g/personal/u3004356_connect_hku_hk/Ehke8nHlpUdJmyVSw2ANUEEBnQf-aCaSxaNcTr2g274-PQ?e=feT9E2) and put them in `./data/datasets/`.
+If the above command is not working, please manually download the training datasets from BaiduYun ([PS Sculpture Dataset and PS Blobby Dataset](https://pan.baidu.com/s/1WUVu9ibIBh4wM1shTXBuNw?pwd=snyc) and put them in `./data/datasets/`.
 
 ### First stage: train Lighting Calibration Network (LCNet)
 ```shell
