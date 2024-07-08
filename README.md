@@ -132,7 +132,7 @@ If you find this code or the provided models useful in your research, please con
 ```
 @inproceedings{chen2019SDPS_Net,
   title={SDPS-Net: Self-calibrating Deep Photometric Stereo Networks},
-  author={Chen, Guanying and Han, Kai and Shi, Boxin and Matsushita, Yasuyuki and Wong, Kwan-Yee K.},
+  author={Chen, Guanying and Han, Kai and Shi, Boxin and Matsushita, Yasuyuki and Wong, Kwan-Yee~K.},
   booktitle={CVPR},
   year={2019}
 }
